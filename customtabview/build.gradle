@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 25
@@ -19,6 +20,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+    tasks.withType(Javadoc) {
+        options{ encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/7/docs/api"
+        }
+    }
 }
 
 dependencies {
@@ -28,4 +44,14 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.+'
     testCompile 'junit:junit:4.12'
+}
+
+publish {
+    repoName = 'MyMoven'           //bintray仓库名
+    userOrg = 'wyshikai'           //bintray注册的用户名
+    groupId = 'com.sky'            //compile引用时的第1部分groupId
+    artifactId = 'CustomTab'       //compile引用时的第2部分项目名
+    publishVersion = '1.0.0'       //compile引用时的第3部分版本号
+    desc = 'This is a simple custom tab library for Android'
+    website = 'https://github.com/wyshikai837/CustomTab'
 }

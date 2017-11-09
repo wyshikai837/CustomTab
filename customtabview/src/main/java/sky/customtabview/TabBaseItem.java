@@ -25,6 +25,7 @@ public abstract class TabBaseItem extends FrameLayout {
 
     /**
      * 设置当前Item被选中
+     * @param checked true被选中，false没有选中
      */
     public abstract void setChecked(boolean checked);
 
